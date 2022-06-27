@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "pinia": "^2.0.14",
     "vant": "^3.5.1",
     "vconsole": "^3.14.6",
