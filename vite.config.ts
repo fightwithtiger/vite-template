@@ -21,6 +21,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           'vue',
           'vue/macros',
           'vue-router',
+          '@vueuse/core',
           'pinia'
         ],
         dts: true,
@@ -31,6 +32,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         vueTemplate: true,
       }),
       Components({
+        dts: true,
         resolvers: [VantResolver()],
       }),
       legacy({
