@@ -19,6 +19,10 @@ const routes = [
       keepAlive: true,
     }
   },
+  {
+    path: '/goods',
+    component: () => import('@/views/goods.vue'),
+  },
   { 
     name: 'NotFound',
     path: '/:pathMatch(.*)*',
