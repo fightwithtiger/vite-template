@@ -1,20 +1,19 @@
-import { UserConfigExport, ConfigEnv } from 'vite';
+import { UserConfigExport, ConfigEnv } from 'vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { viteVConsole } from 'vite-plugin-vconsole';
+import { viteVConsole } from 'vite-plugin-vconsole'
 import legacy from '@vitejs/plugin-legacy'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite';
-import { VantResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 import path from 'path'
 
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv): UserConfigExport => {
-  console.log('mode', mode)
   return defineConfig({
     plugins: [
       vue({
-        reactivityTransform: true,
+        reactivityTransform: true
       }),
       AutoImport({
         imports: [
@@ -30,10 +29,16 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           './src/composables'
         ],
         vueTemplate: true,
+        // eslint报错解决
+        eslintrc: {
+          enabled: true, // Default `false`
+          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        }
       }),
       Components({
         dts: true,
-        resolvers: [VantResolver()],
+        resolvers: [VantResolver()]
       }),
       legacy({
         targets: ['defaults', 'not IE 11']
@@ -50,20 +55,20 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@': path.resolve(__dirname, 'src')
       }
     },
     css: {
       preprocessorOptions: {
         less: {
           additionalData:
-            '@import "src/assets/less/variable.less";',
-        },
-      },
+            '@import "src/assets/less/variable.less";'
+        }
+      }
     },
     server: {
       port: 4000, // 设置服务启动端口号
-      open: true, // 设置服务启动时是否自动打开浏览器
+      open: false // 设置服务启动时是否自动打开浏览器
     }
   })
 }

@@ -1,19 +1,19 @@
-import instance, { McAxiosRequestConfig } from './axios';
-import { AxiosInstance, AxiosResponse } from 'axios';
+import instance, { McAxiosRequestConfig } from './axios'
+import { AxiosInstance, AxiosResponse } from 'axios'
 
-type RequestMethod = 'get' | 'post';
+type RequestMethod = 'get' | 'post'
 
-type Respose<T> = {
-  code: number;
-  data: T;
-  message?: string;
-};
+// type Respose<T> = {
+//   code: number
+//   data: T
+//   message?: string
+// }
 
 class Request {
-  private instance: AxiosInstance;
+  private instance: AxiosInstance
 
   constructor(instance: AxiosInstance) {
-    this.instance = instance;
+    this.instance = instance
   }
 
   /**
@@ -27,7 +27,7 @@ class Request {
     params: Record<string, any> = {},
     config: McAxiosRequestConfig = {}
   ): Promise<T> {
-    return this.request('get', url, { params, ...config });
+    return this.request('get', url, { params, ...config })
   }
 
   /**
@@ -41,7 +41,7 @@ class Request {
     data: Record<string, any>,
     config: McAxiosRequestConfig = {}
   ): Promise<T> {
-    return this.request('post', url, config, data);
+    return this.request('post', url, config, data)
   }
 
   private async request<T>(
@@ -50,12 +50,12 @@ class Request {
     config: McAxiosRequestConfig,
     ...params: any
   ): Promise<T> {
-    const res = await this.instance[method](url, ...params, config);
+    const res = await this.instance[method](url, ...params, config)
     if (config.returnAll) {
       return res as any
     }
-    return res && res.data;
+    return res && res.data
   }
 }
 
-export const request = new Request(instance);
+export const request = new Request(instance)

@@ -4,19 +4,19 @@ const routes = [
   { 
     name: 'home',
     path: '/',
-    component: () => import('@/views/home/index.vue'),
+    component: () => import('@/views/home.vue'),
     meta: {
       title: '首页',
-      keepAlive: true,
+      keepAlive: true
     }
   },
   { 
     name: 'about',
     path: '/about',
-    component: () => import('@/views/about/index.vue'),
+    component: () => import('@/views/about.vue'),
     meta: {
       title: '关于',
-      keepAlive: true,
+      keepAlive: true
     }
   },
   { 
@@ -26,15 +26,15 @@ const routes = [
     meta: {
       title: '404页面不存在'
     }
-  },
+  }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 })
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to, _from) => {
   document.title = to.meta.title as string || ''
   return true
 })

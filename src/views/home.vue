@@ -26,17 +26,17 @@
 </template>
 
 <script lang="ts" setup>
-import { isDev } from '@/utils/env';
-import { BASE_URL } from '@/config/host';
+import { isDev } from '@/utils/env'
+import { BASE_URL } from '@/config/host'
 
 const store = useMainStore()
 
-const value1 = ref(0);
+const value1 = ref(0)
 const option1 = [
   { text: '全部商品', value: 0 },
   { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
+  { text: '活动商品', value: 2 }
+]
 
 const add = () => {
   store.counter++

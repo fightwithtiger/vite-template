@@ -1,11 +1,11 @@
-import { defineStore } from "pinia"
+import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
-    counter: 0,
+    counter: 0
   }),
   getters: {
-    doubleCount: (state) => state.counter * 2,
+    doubleCount: (state) => state.counter * 2
   },
   actions: {
     increment() {
@@ -13,6 +13,6 @@ export const useMainStore = defineStore('main', {
     },
     randomizeCounter() {
       this.counter = Math.round(100 * Math.random())
-    },
-  },
+    }
+  }
 })

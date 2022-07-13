@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-  const { x, y } = useMouse()
+const { x, y } = useMouse()
 </script>
 
 <style scoped>

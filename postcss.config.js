@@ -2,7 +2,7 @@ module.exports = {
   plugins: [
     require('autoprefixer')({
       overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8', '> 1%'],
-      grid: true,
+      grid: true
     }),
     require('postcss-px-to-viewport')({
       viewportWidth: 375, // 视窗的宽度，对应的是我们设计稿的宽度，一般是750
@@ -13,5 +13,5 @@ module.exports = {
       minPixelValue: 1, // 小于或等于`1px`不转换为视窗单位，你也可以设置为你想要的值
       mediaQuery: false // 允许在媒体查询中转换`px`
     })
-  ],
-};
+  ]
+}

@@ -6,7 +6,11 @@
     "dev": "vite --mode dev",
     "build:test": "vue-tsc --noEmit && vite build --mode test",
     "build:prod": "vue-tsc --noEmit && vite build --mode prod",
-    "preview": "vite preview"
+    "test": "vitest",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint .",
+    "checkall": "pnpm run typecheck && pnpm run lint"
   },
   "dependencies": {
     "@vueuse/core": "^8.7.5",
@@ -19,17 +23,23 @@
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
     "@vitejs/plugin-legacy": "^1.8.2",
     "@vitejs/plugin-vue": "^2.3.3",
     "autoprefixer": "^10.4.7",
+    "eslint": "^8.19.0",
+    "eslint-plugin-vue": "^9.2.0",
+    "jsdom": "^20.0.0",
     "less": "^4.1.3",
     "postcss": "^8.4.14",
     "postcss-px-to-viewport": "^1.1.1",
-    "typescript": "^4.5.4",
+    "typescript": "4.7.4",
     "unplugin-auto-import": "^0.9.1",
     "unplugin-vue-components": "^0.19.9",
     "vite": "^2.9.9",
     "vite-plugin-vconsole": "^1.2.2",
-    "vue-tsc": "^0.34.7"
+    "vitest": "^0.18.0",
+    "vue-tsc": "0.35.0"
   }
 }
