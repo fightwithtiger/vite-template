@@ -6,17 +6,24 @@ const routes = [
     path: '/',
     component: () => import('@/views/home.vue'),
     meta: {
-      title: '首页',
-      keepAlive: true
-    }
+      title: '首页'
+      // keepAlive: true
+    },
+    children: [
+      {
+        name: 'child',
+        path: '/child',
+        component: () => import('@/views/child.vue')
+      }
+    ]
   },
   { 
     name: 'about',
     path: '/about',
     component: () => import('@/views/about.vue'),
     meta: {
-      title: '关于',
-      keepAlive: true
+      title: '关于'
+      // keepAlive: true
     }
   },
   { 

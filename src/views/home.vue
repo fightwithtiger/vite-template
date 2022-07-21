@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     home
+    <button @click="$router.push('/child')">child</button>
     <div>
       <input type="text" />
     </div>
@@ -21,6 +22,8 @@
         <van-button type="primary" @click="add">add</van-button>
         <van-button type="primary" @click="randomizeCounter">randomizeCounter</van-button>
       </div>
+
+      <router-view></router-view>
     </div>
   </div>
 </template>
