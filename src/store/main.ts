@@ -1,8 +1,15 @@
+import type { Page } from '@/router/type'
 import { defineStore } from 'pinia'
 
+interface MainState {
+  counter: number
+  pages: Page[] | null
+}
+
 export const useMainStore = defineStore('main', {
-  state: () => ({
-    counter: 0
+  state: (): MainState => ({
+    counter: 0,
+    pages: null
   }),
   getters: {
     doubleCount: (state) => state.counter * 2
@@ -13,6 +20,9 @@ export const useMainStore = defineStore('main', {
     },
     randomizeCounter() {
       this.counter = Math.round(100 * Math.random())
+    },
+    setPages(data: Page[]) {
+      this.pages = [...data]
     }
   }
 })
