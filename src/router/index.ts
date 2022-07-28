@@ -13,7 +13,6 @@ router.beforeEach(async (to, _from, next) => {
   try {
     if (_userInfo.value && _userInfo.value.token) {
       if(to.name === 'login') {
-        console.log('111111')
         next({ path: _from.path })
         return
       }
@@ -21,15 +20,12 @@ router.beforeEach(async (to, _from, next) => {
       if (!store.pages) {
         const data = await getPages()
         useMatchingRoutes(data)
-        console.log('222222')
         next({ ...to, replace: true })
       } else {
         document.title = to.meta.title as string || ''
-        console.log(_userInfo.value && _userInfo.value.token, '3333')
         next()
       }
     } else {
-      console.log(to)
       if(to.name !== undefined && !to.meta.needLogin ) {
         next()
       }else {
