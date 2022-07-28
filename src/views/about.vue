@@ -1,18 +1,10 @@
 <template>
-<div class="container">
-  about
   <div>
-    test vueuse
-    <div>
-      x: {{ x }}
-      y: {{ y }}
-    </div>
+    about
   </div>
-</div>
 </template>
 
 <script lang="ts" setup>
-const { x, y } = useMouse()
 </script>
 
 <style scoped>

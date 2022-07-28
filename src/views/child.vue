@@ -1,5 +1,6 @@
 <template>
 <div class="child">
+  child
   <button @click.stop="$router.go(-1)">back</button>
 </div>
 </template>
