@@ -1,11 +1,12 @@
-import type { Page } from '@/router/type'
-import { generator } from '@/router/generate'
+import type { Page } from '@/lib'
+import router, { notFound, generate } from '@/router'
 
 export function useMatchingRoutes(pages: Page[]) {
   try {
     const store = useMainStore()
     store.setPages(pages)
-    generator(pages)
+    generate(router, pages)
+    router.addRoute(notFound)
   } catch (e) {
   }
 }

@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { commonRoutes } from './common'
+export * from './notFound'
+export * from './generate'
 import { getPages } from '@/api'
 
 const routes = [...commonRoutes]
