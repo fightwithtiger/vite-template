@@ -28,7 +28,7 @@ router.beforeEach(async (to, _from, next) => {
         next()
       }
     } else {
-      if(to.name !== undefined && !to.meta.needLogin ) {
+      if(to.name !== undefined && !to.meta.needLogin) {
         next()
       }else {
         next({ path: '/login', query: { rediect: to.fullPath }})

@@ -12,6 +12,8 @@ export type PageName = Pick<Page, 'name' | 'zhName'>
 
 export type ActionType = (router: Router, mathing: RouteRecordRaw[]) => void
 
+type RouteKey = keyof RouteRecordRaw
+
 let _action: ActionType | null = null
 
 export function createRoutesGenerator(action?: ActionType) {
@@ -34,17 +36,32 @@ function defaultAction(router: Router, matching: RouteRecordRaw[]) {
 }
 
 function getMatchingRoutes(pages: Page[], dynamicRoutes: RouteRecordRaw[]) {
-  const routeNames = resolvePages(pages)
-  const matching = []
-  for (let item of routeNames) {
-    const route = dynamicRoutes.find(i => i.name === item.name)
-    if (route) {
-      if (!route.meta) {
-        route.meta = { title: '' }
+  const pageNames = resolvePages(pages)
+  const matching = match(dynamicRoutes, pageNames)
+
+  return matching
+}
+
+function match(origin: RouteRecordRaw[], pageNames: PageName[], matching: RouteRecordRaw[] = []) {
+  const routeNames = pageNames.map(i => i.name)
+
+  for (let item of origin) {
+    if (!item.name) {
+      throw new Error('route.name empty')
+    }
+    if (routeNames.includes(item.name as string)) {
+      const idx = matching.length
+      matching[idx] = { ...item }
+      if(!matching[idx].meta) {
+        matching[idx].meta = {}
       }
-      route.meta.title = item.zhName || route.meta.title
-      route.meta.needLogin = true
-      matching.push(route)
+      matching[idx].meta!.needLogin = true
+      matching[idx].meta!.title = pageNames.find(i => i.name === item.name)?.zhName || matching[idx].meta!.title || ''
+      matching[idx].children = []
+
+      if (item.children && item.children.length > 0) {
+        match(item.children, pageNames, matching[idx].children)
+      }
     }
   }
 

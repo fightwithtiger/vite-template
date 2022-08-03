@@ -1,6 +1,7 @@
 <template>
   <div>
     home
+    <button @click="$router.push('/child')">child</button>
     <button @click="$router.push('/page11')">page11</button>
     <button @click="$router.push('/ad')">ad</button>
     <button @click="logout">logout</button>
