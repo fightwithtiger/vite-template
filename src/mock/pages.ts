@@ -12,25 +12,11 @@ export const pages = [
         isMenu: true,
         children: []
       },
-      // {
-      //   id: 12,
-      //   name: 'page12',
-      //   zhName: '页面12',
-      //   isMenu: true,
-      //   children: []
-      // },
       {
-        id: 13,
-        name: 'home',
-        zhName: '首页',
-        isMenu: false,
-        children: []
-      },
-      {
-        id: 14,
-        name: 'child',
-        zhName: '子路由',
-        isMenu: false,
+        id: 12,
+        name: 'page12',
+        zhName: '页面12',
+        isMenu: true,
         children: []
       }
     ]
@@ -59,7 +45,7 @@ export const pages = [
   },
   {
     id: 3,
-    name: 'menu3',
+    name: 'page3',
     zhName: '菜单三',
     isMenu: true,
     children: []

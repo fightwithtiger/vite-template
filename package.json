@@ -13,7 +13,9 @@
     "checkall": "pnpm run typecheck && pnpm run lint"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "@vueuse/core": "^8.7.5",
+    "ant-design-vue": "^3.2.11",
     "axios": "^0.27.2",
     "pinia": "^2.0.14",
     "vant": "^3.5.1",

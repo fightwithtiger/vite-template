@@ -4,7 +4,51 @@ export * from './notFound'
 export * from './generate'
 import { getPages } from '@/api'
 
-const routes = [...commonRoutes]
+const routes = [
+  ...commonRoutes,
+  {
+    name: 'admin',
+    path: '/admin',
+    component: () => import('@/layout/AdminLayout.vue'),
+    redirect: '/admin/home',
+    meta: {
+      title: '后台管理系统',
+      keepAlive: true
+    },
+    children: [
+      {
+        name: 'home',
+        path: 'home',
+        component: () => import('@/views/home.vue'),
+        meta: {
+          title: '首页',
+          keepAlive: true,
+          needLogin: true
+        },
+        children: [
+          {
+            name: 'child',
+            path: 'child',
+            component: () => import('@/views/child.vue'),
+            meta: {
+              title: 'child',
+              keepAlive: true
+            }
+          }
+        ]
+      },
+      { 
+        name: 'ad',
+        path: 'ad',
+        component: () => import('@/views/ad.vue'),
+        meta: {
+          title: '活动页面',
+          needLogin: false
+        }
+      }
+    ]
+  }
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
