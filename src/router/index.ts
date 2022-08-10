@@ -7,6 +7,11 @@ import { getPages } from '@/api'
 const routes = [
   ...commonRoutes,
   {
+    name: 'in',
+    path: '/',
+    redirect: '/admin/home'
+  },
+  {
     name: 'admin',
     path: '/admin',
     component: () => import('@/layout/AdminLayout.vue'),

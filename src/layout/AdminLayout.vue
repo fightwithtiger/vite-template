@@ -13,6 +13,7 @@
             <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
             <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
           </div>
+          <!-- <div class="header-content"></div> -->
           <div @click="logout">退出</div>
         </div>
       </a-layout-header>
@@ -115,7 +116,12 @@ const logout = () => {
 
     .header{
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between !important;
+      .header-content{
+        flex: 1;
+        height: 100%;
+        background-color: antiquewhite;
+      }
     }
 
     .content {
