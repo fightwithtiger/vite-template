@@ -1,5 +1,7 @@
 <template>
-  <div>page21</div>
+  <div>
+    <AsyncCustomHeader title="page21" content="content" />page21
+  </div>
 </template>
 
 <script lang="ts" setup>

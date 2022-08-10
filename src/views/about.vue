@@ -1,4 +1,5 @@
 <template>
+  <AsyncCustomHeader title="关于" content="content" />
   <div>
     about
   </div>

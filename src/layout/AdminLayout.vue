@@ -13,8 +13,8 @@
             <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
             <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
           </div>
-          <!-- <div class="header-content"></div> -->
-          <div @click="logout">退出</div>
+          <div id="header-content" class="header-content"></div>
+          <div class="logout-btn" @click="logout">退出</div>
         </div>
       </a-layout-header>
       <a-layout :style="{ height: 'calc(100vh - 64px)', overflow: 'auto' }">
@@ -28,9 +28,6 @@
 </template>
 <script lang="ts" setup>
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from '@ant-design/icons-vue'
@@ -52,6 +49,7 @@ onMounted(async () => {
 
 const logout = () => {
   _userInfo.value = null
+  window.location.replace('/login')
 }
 </script>
 <style>
@@ -114,19 +112,25 @@ const logout = () => {
       overflow: auto;
     }
 
-    .header{
-      display: flex;
-      justify-content: space-between !important;
-      .header-content{
-        flex: 1;
-        height: 100%;
-        background-color: antiquewhite;
-      }
-    }
+
 
     .content {
       height: calc(100vh - 64px);
       overflow: auto;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between !important;
+
+    .header-content {
+      flex: 1;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .logout-btn {
+      cursor: pointer;
     }
   }
 }
