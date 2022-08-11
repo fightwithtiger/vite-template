@@ -17,6 +17,7 @@
     "@vueuse/core": "^8.7.5",
     "ant-design-vue": "^3.2.11",
     "axios": "^0.27.2",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.14",
     "vant": "^3.5.1",
     "vconsole": "^3.14.6",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
+    "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "@vitejs/plugin-legacy": "^1.8.2",

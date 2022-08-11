@@ -2,6 +2,9 @@
   <div>
     <AsyncCustomHeader title="首页" content="home"/>
     home
+    <input type="text" v-model="msg" />
+    <div>{{ msg }}</div>
+    <button @click="$router.push({ name: 'detail' })">detial</button>
     <button @click="$router.push({ name: 'child' })">child</button>
     <button @click="$router.push({ name: 'page11'} )">page11</button>
     <button @click="$router.push({ name: 'ad' })">ad</button>
@@ -12,6 +15,8 @@
 
 <script lang="ts" setup>
 const router = useRouter()
+
+const msg = ref('hello world')
 
 const logout = () => {
   _userInfo.value = null

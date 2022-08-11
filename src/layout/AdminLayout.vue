@@ -17,12 +17,26 @@
           <div class="logout-btn" @click="logout">退出</div>
         </div>
       </a-layout-header>
-      <a-layout :style="{ height: 'calc(100vh - 64px)', overflow: 'auto' }">
+      <a-layout :style="{ height: 'calc(100vh - 104px)', overflow: 'auto' }">
         <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff' }">
-          <router-view></router-view>
+          <router-view v-slot="{ Component, route }">
+            <!-- <template v-if="$route.meta.keepAlive">
+              <keep-alive>
+                <component :is="Component" />
+              </keep-alive>
+            </template>
+            <template v-else>
+              <component :is="Component" />
+            </template> -->
+
+            <keep-alive :include="getKeepAlivePages() as string[] || []">
+              <component :is="Component" :key="route.fullPath"></component>
+            </keep-alive>
+            
+          </router-view>
         </a-layout-content>
       </a-layout>
-
+      <FooterContainer />
     </a-layout>
   </a-layout>
 </template>
@@ -31,25 +45,25 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from '@ant-design/icons-vue'
-import { getPages } from '@/api'
 import type { Page } from '@/lib'
+import { getKeepAlivePages } from '@/router'
 
 const selectedKeys = ref<string[]>(['1'])
 const collapsed = ref<boolean>(false)
-const pages = ref<any[]>([])
+const pages = ref<Page[]>([])
 
-onMounted(async () => {
+onMounted(() => {
   try {
-    console.log('layout rerender')
-    const data = await getPages()
-    pages.value = data
+    const store = useMainStore()
+    console.log('layout rerender', getKeepAlivePages())
+    pages.value = store.pages as Page[] || []
   } catch (e) {
   }
 })
 
 const logout = () => {
   _userInfo.value = null
-  window.location.replace('/login')
+  window.location.replace('/')
 }
 </script>
 <style>
@@ -129,6 +143,7 @@ const logout = () => {
       height: 100%;
       box-sizing: border-box;
     }
+
     .logout-btn {
       cursor: pointer;
     }

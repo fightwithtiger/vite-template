@@ -1,35 +1,10 @@
 export const dynamicRoutes = [
   { 
-    name: 'home',
-    path: '/home',
-    component: () => import('@/views/home.vue'),
-    meta: {
-      title: '首页',
-      keepAlive: true
-    },
-    children: [
-      {
-        name: 'child',
-        path: '/child',
-        component: () => import('@/views/child.vue')
-      }
-    ]
-  },
-  { 
     name: 'about',
     path: 'about',
     component: () => import('@/views/about.vue'),
     meta: {
       title: '关于',
-      keepAlive: true
-    }
-  },
-  { 
-    name: 'page11',
-    path: 'page11',
-    component: () => import('@/views/page11.vue'),
-    meta: {
-      title: 'page11',
       keepAlive: true
     }
   },

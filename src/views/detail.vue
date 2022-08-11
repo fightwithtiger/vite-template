@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AsyncCustomHeader title="页面3" content="page3"/>
-    page3
+    <div>detial</div>
+    <a-button @click="$router.go(-1)">back</a-button>
   </div>
 </template>
 

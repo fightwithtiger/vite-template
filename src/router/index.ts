@@ -1,15 +1,22 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 import { commonRoutes } from './common'
 export * from './notFound'
 export * from './generate'
 import { getPages } from '@/api'
+
 
 const routes = [
   ...commonRoutes,
   {
     name: 'in',
     path: '/',
-    redirect: '/admin/home'
+    redirect: '/admin/home',
+    meta: {
+      title: '后台管理系统',
+      // keepAlive: true
+    }
   },
   {
     name: 'admin',
@@ -18,7 +25,7 @@ const routes = [
     redirect: '/admin/home',
     meta: {
       title: '后台管理系统',
-      keepAlive: true
+      // keepAlive: true
     },
     children: [
       {
@@ -50,6 +57,16 @@ const routes = [
           title: '活动页面',
           needLogin: false
         }
+      },
+      {
+        name: 'detail',
+        path: 'detail',
+        component: () => import('@/views/detail.vue'),
+        meta: {
+          title: '详情',
+          // keepAlive: true,
+          needLogin: false
+        }
       }
     ]
   }
@@ -62,6 +79,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, _from, next) => {
   try {
+    nprogress.start()
     if (_userInfo.value && _userInfo.value.token) {
       if(to.name === 'login') {
         next({ path: _from.path })
@@ -87,5 +105,14 @@ router.beforeEach(async (to, _from, next) => {
     console.log(e)
   }
 })
+
+router.afterEach(() => {
+  nprogress.done()
+})
+
+export function getKeepAlivePages() {
+  const routes = router.getRoutes()
+  return routes.filter(i => i.meta?.keepAlive).map(i => i.name)
+}
 
 export default router

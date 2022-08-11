@@ -1,6 +1,6 @@
 <template>
   <Teleport to='.header-content'>
-    <div class="wrapper">
+    <div ref="heRef" class="wrapper">
       <slot name="title">
         <div class="title m-r10">{{ title }}</div>
       </slot>
@@ -21,6 +21,23 @@ withDefaults(defineProps<Props>(), {
   title: '',
   content: ''
 })
+
+const heRef = ref()
+
+onActivated(() => {
+  if(!heRef.value) {
+    return
+  }
+  heRef.value.style.display = 'flex'
+})
+
+onDeactivated(() => {
+  if(!heRef.value) {
+    return
+  }
+  heRef.value.style.display = 'none'
+})
+
 </script>
 
 <style scoped>

@@ -1,4 +1,4 @@
-import type { Page } from '@/router/type'
+import type { Page } from '@/lib'
 import { defineStore } from 'pinia'
 
 interface MainState {
