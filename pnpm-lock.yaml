@@ -14,7 +14,7 @@ specifiers:
   axios: ^0.27.2
   eslint: ^8.19.0
   eslint-plugin-vue: ^9.2.0
-  gen-routes: ^0.0.3
+  gen-routes: ^0.0.4
   jsdom: ^20.0.0
   less: ^4.1.3
   nprogress: ^0.2.0
@@ -30,7 +30,7 @@ specifiers:
   vite-plugin-vconsole: ^1.2.2
   vitest: ^0.18.0
   vue: ^3.2.25
-  vue-router: ^4.0.16
+  vue-router: ^4.1.3
   vue-tsc: 0.35.0
 
 dependencies:
@@ -38,13 +38,13 @@ dependencies:
   '@vueuse/core': 8.7.5_vue@3.2.37
   ant-design-vue: 3.2.11_vue@3.2.37
   axios: 0.27.2
-  gen-routes: 0.0.3_vue@3.2.37
+  gen-routes: 0.0.4_vue@3.2.37
   nprogress: 0.2.0
   pinia: 2.0.14_typescript@4.7.4+vue@3.2.37
   vant: 3.5.1_vue@3.2.37
   vconsole: 3.14.6
   vue: 3.2.37
-  vue-router: 4.0.16_vue@3.2.37
+  vue-router: 4.1.3_vue@3.2.37
 
 devDependencies:
   '@types/node': 18.0.0
@@ -1427,8 +1427,8 @@ packages:
     resolution: {integrity: sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g==}
     dev: true
 
-  /gen-routes/0.0.3_vue@3.2.37:
-    resolution: {integrity: sha512-pNipNkuTUMJ1yPWxlJG3ejfw+gBIZdMt0LhUIdsnU/mfe5gcW9ryp9ve5CNklqtNztAkt5PnDlq/g0+3tck9Gg==}
+  /gen-routes/0.0.4_vue@3.2.37:
+    resolution: {integrity: sha512-uTFS/HqCAqYSwfpEXHhZcWtsyHjsVNhfFE3iwATCyKHYUeLyu8u/BN1HkEdOxj+l+kS28kW+3ZvzbFUr9afZGQ==}
     dependencies:
       vue-router: 4.1.3_vue@3.2.37
     transitivePeerDependencies:
@@ -2576,15 +2576,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /vue-router/4.0.16_vue@3.2.37:
-    resolution: {integrity: sha512-JcO7cb8QJLBWE+DfxGUL3xUDOae/8nhM1KVdnudadTAORbuxIC/xAydC5Zr/VLHUDQi1ppuTF5/rjBGzgzrJNA==}
-    peerDependencies:
-      vue: ^3.2.0
-    dependencies:
-      '@vue/devtools-api': 6.1.4
-      vue: 3.2.37
-    dev: false
 
   /vue-router/4.1.3_vue@3.2.37:
     resolution: {integrity: sha512-XvK81bcYglKiayT7/vYAg/f36ExPC4t90R/HIpzrZ5x+17BOWptXLCrEPufGgZeuq68ww4ekSIMBZY1qdUdfjA==}
