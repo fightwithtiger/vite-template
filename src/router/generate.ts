@@ -1,5 +1,7 @@
+import { ActionType } from './../lib/gen-routes'
 import { dynamicRoutes } from './dynamic'
-import { createRoutesGenerator } from '@/lib'
+// import { createRoutesGenerator } from '@/lib'
+import { createRoutesGenerator } from 'gen-routes'
 import type { Router, RouteRecordRaw } from 'vue-router'
 
 const action = (router: Router, matching: RouteRecordRaw[]) => {
