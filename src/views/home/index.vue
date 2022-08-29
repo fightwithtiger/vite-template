@@ -1,58 +1,76 @@
 <template>
-  <div class="container">
-    home
-    <div>
-      <input type="text" />
-    </div>
+  <div>
+    <button @click="flag = !flag">change</button>
     <div class="content">
-      <div>
-        {{ isDev() ? 'hello dev' : 'hello test' }}
-        {{ BASE_URL }}
-      </div>
-      
-      <div>
-        <van-dropdown-menu>
-          <van-dropdown-item v-model="value1" :options="option1" />
-        </van-dropdown-menu>
-      </div>
-      <div>
-        {{ store.counter }}
-        {{ store.doubleCount }}
-        <van-button type="primary" @click="add">add</van-button>
-        <van-button type="primary" @click="randomizeCounter">randomizeCounter</van-button>
-      </div>
+      <Tree v-if="flag" :data="raw" @action="handleAction"/>
+      <Tree v-if="!flag" :data="raw" :NodeComp="Tag" :loadMore="loadMore" @action="handleAction" @customAction="sayHello" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { isDev } from '@/utils/env';
-import { BASE_URL } from '@/config/host';
+import Tag from './Tag.vue';
+import type { Action, LeafNode } from '@/lib/tree'
 
-const store = useMainStore()
+const flag = ref(false)
 
-const value1 = ref(0);
-const option1 = [
-  { text: '全部商品', value: 0 },
-  { text: '新款商品', value: 1 },
-  { text: '活动商品', value: 2 },
-];
-
-const add = () => {
-  store.counter++
+const data: any[] = []
+const root = 20
+const children = 10
+const base = 40
+for (let i = 0; i < root; i++) {
+  data.push({
+    id: `${i}`,
+    name: `test-${i}`,
+    children: []
+  });
+  for (let j = 0; j < children; j++) {
+    data[i].children.push({
+      id: `${i}-${j}`,
+      name: `test-${i}-${j}`,
+      children: []
+    });
+    for (let k = 0; k < base; k++) {
+      data[i].children[j].children.push({
+        id: `${i}-${j}-${k}`,
+        name: `test-${i}-${j}-${k}`
+      });
+    }
+  }
 }
 
-const randomizeCounter = () => {
-  store.randomizeCounter()
+const raw = ref(data)
+
+const loadMore = () => {
+  console.log('--------load data ------------')
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([{
+        id: Date.now(),
+        name: 'aaaaaaa',
+        children: [],
+        // isLeaf: true
+      }])
+    }, 2000)
+  })
+}
+
+const handleAction = (action: Action, payload: LeafNode) => {
+  console.log(action, payload)
+}
+
+const sayHello = (data: any) => {
+  console.log('hello', data)
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .content {
-  color: @colorError;
-  width: 375px;
-  height: 400px;
-  background-color: antiquewhite;
-  font-size: 16px;
+  width: 400px;
+  height: 600px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
 }
 </style>
