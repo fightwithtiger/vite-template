@@ -1,9 +1,13 @@
 <template>
   <div>
     <button @click="flag = !flag">change</button>
-    <div class="content">
+    <!-- <div class="content">
       <Tree v-if="flag" :data="raw" @action="handleAction"/>
       <Tree v-if="!flag" :data="raw" :NodeComp="Tag" :loadMore="loadMore" @action="handleAction" @customAction="sayHello" />
+    </div> -->
+
+    <div class="content">
+      <VirtualTree :data="raw" />
     </div>
   </div>
 </template>

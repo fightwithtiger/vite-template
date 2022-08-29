@@ -7,6 +7,7 @@ import 'vant/lib/index.css';
 import App from './App.vue'
 
 import { Tree } from './lib/tree'
+import { VirtualTree } from './lib/virtualTree'
 
 console.log('env:', getEnv())
 
@@ -18,5 +19,6 @@ app.use(router)
 app.use(pinia)
 
 app.component('Tree', Tree)
+app.component('VirtualTree', VirtualTree)
 
 app.mount('#app')
