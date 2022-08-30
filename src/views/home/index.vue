@@ -7,7 +7,7 @@
     </div> -->
 
     <div class="content">
-      <VirtualTree :data="raw" />
+      <VirtualTree :data="raw" :loadMore="loadMore" @action="handleAction" />
     </div>
   </div>
 </template>
@@ -19,9 +19,9 @@ import type { Action, LeafNode } from '@/lib/tree'
 const flag = ref(false)
 
 const data: any[] = []
-const root = 20
-const children = 10
-const base = 40
+const root = 1
+const children = 2
+const base = 3
 for (let i = 0; i < root; i++) {
   data.push({
     id: `${i}`,

@@ -1,30 +1,25 @@
 <template>
-  <div v-if="data">
-    <component :is="NodeComp" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
-    <div v-if="data.children && showSubTree">
-      <Leaf :uid="uid" v-bind="$attrs" v-for="item of data.children" :key="item.id" :data="item" :NodeComp="NodeComp" />
-    </div>
+  <div>
+    <component :is="Node" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useTreeStore, ACTIONS } from '../composable'
-import type { LeafNode } from '../type'
+import { NodeItem } from '../type';
 import Node from './Node.vue'
+import { useVirtualTreeStore, ACTIONS } from '../composable'
 
 interface Props {
-  data: LeafNode | null
-  NodeComp?: any
+  data: NodeItem | null
   uid: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   data: null,
-  NodeComp: Node,
   uid: ''
 })
 
-const { currentNode, currentAction, loadMore } = useTreeStore(props.uid)
+const { currentNode, currentAction, loadMore } = useVirtualTreeStore(props.uid)
 
 const showSubTree = ref(false)
 
@@ -46,7 +41,7 @@ watch(showSubTree, async (val) => {
   }
 })
 
-const select = (node: LeafNode | null) => {
+const select = (node: NodeItem | null) => {
   currentAction.value = ACTIONS.SELECT
   currentNode.value = {...node!}
 }

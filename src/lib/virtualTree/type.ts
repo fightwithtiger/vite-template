@@ -15,3 +15,7 @@ export interface TreeStore {
   loadMore: (() => any) | null
   setLoadMoreFn: (fn: (() => any) | null) => void
 }
+
+export interface NodeItem extends LeafNode {
+  depth: number
+}

@@ -1,17 +1,19 @@
 <template>
-  <div class="sub-left">
-    <div v-if="data" class="wrapper">
-    <span class="spread" @click.stop="handleSpread">{{ guideSymbol }}</span>
-    <span @click.stop="handleSelect(data)">{{ data.name }}</span>
-  </div>
+  <div>
+    <div v-if="data" class="leaf">
+      <span v-for="i of data.depth" class="indent"></span>
+      <span @click.stop="handleSpread">{{ guideSymbol }}</span>
+      &nbsp;&nbsp;
+      <span @click.stop="handleSelect(data)">{{data.name}}</span>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { LeafNode } from '../type';
+import { NodeItem } from '../type';
 
 interface Props {
-  data: LeafNode | null
+  data: NodeItem | null
   showSubTree: boolean
   loading?: boolean
 }
@@ -19,7 +21,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   data: null,
   showSubTree: false,
-  loading: false,
+  loading: false
 })
 
 const emits = defineEmits(['update:showSubTree', 'selectNode'])
@@ -39,20 +41,19 @@ const handleSpread = () => {
   emits('update:showSubTree', !props.showSubTree)
 }
 
-const handleSelect = (data: LeafNode | null) => {
+const handleSelect = (data: NodeItem | null) => {
   emits('selectNode', data)
 }
 </script>
 
 <style scoped>
-.sub-leaf{
-  padding-left: 14px;
-}
-.wrapper {
-  padding: 4px 8px;
+.leaf {
+  padding: 6px 10px;
   cursor: pointer;
 }
-.spread {
-  padding: 0px 4px;
+.indent{
+  display: inline-block;
+  width: 12px;
+  height: 100%;
 }
 </style>
