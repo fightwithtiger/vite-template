@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div v-if="data" class="leaf">
-      <span v-for="i of data.depth" class="indent"></span>
-      <span @click.stop="handleSpread">{{ guideSymbol }}</span>
-      &nbsp;&nbsp;
-      <span @click.stop="handleSelect(data)">{{data.name}}</span>
-    </div>
+  <div v-if="data" class="leaf">
+    <span v-for="i of data.depth" class="indent"></span>
+    <span @click.stop="handleSpread">{{ guideSymbol }}</span>
+    &nbsp;&nbsp;
+    <span @click.stop="handleSelect(data)">{{ data.name }}</span>
   </div>
 </template>
 
@@ -27,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits(['update:showSubTree', 'selectNode'])
 
 const guideSymbol = computed(() => {
-  if(props.loading) {
+  if (props.loading) {
     return '🔘'
   }
 
@@ -35,7 +33,7 @@ const guideSymbol = computed(() => {
 })
 
 const handleSpread = () => {
-  if(props.data?.isLeaf || props.loading) {
+  if (props.data?.isLeaf || props.loading) {
     return
   }
   emits('update:showSubTree', !props.showSubTree)
@@ -51,7 +49,8 @@ const handleSelect = (data: NodeItem | null) => {
   padding: 6px 10px;
   cursor: pointer;
 }
-.indent{
+
+.indent {
   display: inline-block;
   width: 12px;
   height: 100%;

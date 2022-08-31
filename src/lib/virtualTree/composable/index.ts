@@ -1,8 +1,9 @@
-import type { LeafNode, TreeStore } from "../type"
+import type { TreeStore, NodeItem } from "../type"
 
 export enum ACTIONS {
   EXPAND = 'expand',
   SELECT = 'select',
+  PICK_UP = 'pick_up',
   NONE = 'none'
 }
 
@@ -12,7 +13,7 @@ export function useVirtualTreeStore(id: any) {
   if(!stores[id]) {
     stores[id] = {
       currentAction: ref(ACTIONS.NONE),
-      currentNode: ref<LeafNode | null>(null),
+      currentNode: ref<NodeItem | null>(null),
       loadMore: null,
       setLoadMoreFn: (fn: any) => {
         if(!fn) {

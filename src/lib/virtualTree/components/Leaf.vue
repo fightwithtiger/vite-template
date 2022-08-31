@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <component :is="Node" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
-  </div>
+  <component :is="Node" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
 </template>
 
 <script lang="ts" setup>
@@ -21,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { currentNode, currentAction, loadMore } = useVirtualTreeStore(props.uid)
 
-const showSubTree = ref(false)
+const showSubTree = ref(props.data?.isActive || false)
 
 const loading = ref(false)
 
@@ -36,9 +34,13 @@ watch(showSubTree, async (val) => {
       loading.value = false
       props.data!.children = children
     }
+    props.data!.isActive = true
     currentAction.value = ACTIONS.EXPAND
-    currentNode.value = {...props.data!}
+  }else {
+    props.data!.isActive = false
+    currentAction.value = ACTIONS.PICK_UP
   }
+  currentNode.value = {...props.data!}
 })
 
 const select = (node: NodeItem | null) => {

@@ -1,21 +1,25 @@
 import { Ref } from "vue"
 
-export interface LeafNode {
+export interface NodeItem {
   id: number
   name: string
-  children: LeafNode[]
+  children: NodeItem[]
   isLeaf?: boolean
+  depth?: number
+  parentId?: number
+  isDelete?: boolean
+  isActive?: boolean
 }
 
-export type Action = 'expand' | 'select' | 'none'
+export type Action = 'expand' | 'select' | 'none' | 'pick_up'
 
 export interface TreeStore {
   currentAction: Ref<Action>
-  currentNode: Ref<LeafNode | null>
+  currentNode: Ref<NodeItem | null>
   loadMore: (() => any) | null
   setLoadMoreFn: (fn: (() => any) | null) => void
 }
 
-export interface NodeItem extends LeafNode {
-  depth: number
-}
+// export interface NodeItem extends LeafNode {
+//   depth?: number
+// }

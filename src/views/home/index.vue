@@ -8,6 +8,7 @@
 
     <div class="content">
       <VirtualTree :data="raw" :loadMore="loadMore" @action="handleAction" />
+      <VirtualTree :data="raw" :loadMore="loadMore" @action="handleAction" :height="240" :count="15" />
     </div>
   </div>
 </template>
@@ -19,25 +20,25 @@ import type { Action, LeafNode } from '@/lib/tree'
 const flag = ref(false)
 
 const data: any[] = []
-const root = 1
-const children = 2
-const base = 3
+const root = 60
+const children = 20
+const base = 10
 for (let i = 0; i < root; i++) {
   data.push({
-    id: `${i}`,
-    name: `test-${i}`,
+    id: `${i+1}`,
+    name: `test-${i+1}`,
     children: []
   });
   for (let j = 0; j < children; j++) {
     data[i].children.push({
-      id: `${i}-${j}`,
-      name: `test-${i}-${j}`,
+      id: `${i+1}-${j}`,
+      name: `test-${i+1}-${j}`,
       children: []
     });
     for (let k = 0; k < base; k++) {
       data[i].children[j].children.push({
-        id: `${i}-${j}-${k}`,
-        name: `test-${i}-${j}-${k}`
+        id: `${i+1}-${j}-${k}`,
+        name: `test-${i+1}-${j}-${k}`
       });
     }
   }
@@ -55,7 +56,7 @@ const loadMore = () => {
         children: [],
         // isLeaf: true
       }])
-    }, 2000)
+    }, 600)
   })
 }
 
