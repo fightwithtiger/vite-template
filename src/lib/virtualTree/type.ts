@@ -9,6 +9,7 @@ export interface NodeItem {
   parentId?: number
   isDelete?: boolean
   isActive?: boolean
+  index?: number | string
 }
 
 export type Action = 'expand' | 'select' | 'none' | 'pick_up'

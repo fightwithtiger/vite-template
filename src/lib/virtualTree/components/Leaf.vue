@@ -1,5 +1,5 @@
 <template>
-  <component :is="Node" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
+  <component :is="NodeComp" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
 </template>
 
 <script lang="ts" setup>
@@ -10,11 +10,13 @@ import { useVirtualTreeStore, ACTIONS } from '../composable'
 interface Props {
   data: NodeItem | null
   uid: string
+  NodeComp?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
   data: null,
-  uid: ''
+  uid: '',
+  NodeComp: Node
 })
 
 const { currentNode, currentAction, loadMore } = useVirtualTreeStore(props.uid)

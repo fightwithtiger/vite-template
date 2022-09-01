@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data">
+  <div v-if="data" :style="{paddingLeft: '14px'}">
     <component :is="NodeComp" v-bind="$attrs" :data="data" v-model:showSubTree="showSubTree" :loading="loading" @selectNode="select"></component>
     <div v-if="data.children && showSubTree">
       <Leaf :uid="uid" v-bind="$attrs" v-for="item of data.children" :key="item.id" :data="item" :NodeComp="NodeComp" />

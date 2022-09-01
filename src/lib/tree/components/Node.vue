@@ -1,9 +1,9 @@
 <template>
-  <div class="sub-left">
+  <div class="sub-leaf">
     <div v-if="data" class="wrapper">
-    <span class="spread" @click.stop="handleSpread">{{ guideSymbol }}</span>
-    <span @click.stop="handleSelect(data)">{{ data.name }}</span>
-  </div>
+      <span class="spread" @click.stop="handleSpread">{{ guideSymbol }}</span>
+      <span @click.stop="handleSelect(data)">{{ data.name }}</span>
+    </div>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emits = defineEmits(['update:showSubTree', 'selectNode'])
 
 const guideSymbol = computed(() => {
-  if(props.loading) {
+  if (props.loading) {
     return '🔘'
   }
 
@@ -33,7 +33,7 @@ const guideSymbol = computed(() => {
 })
 
 const handleSpread = () => {
-  if(props.data?.isLeaf || props.loading) {
+  if (props.data?.isLeaf || props.loading) {
     return
   }
   emits('update:showSubTree', !props.showSubTree)
@@ -45,13 +45,22 @@ const handleSelect = (data: LeafNode | null) => {
 </script>
 
 <style scoped>
-.sub-leaf{
-  padding-left: 14px;
+.sub-leaf {
+  /* padding-left: 14px; */
+  /* margin-left: 14px; */
+  display: flex;
 }
+.indent {
+  /* display: inline-block; */
+  width: 14px;
+  height: 20px;
+}
+
 .wrapper {
   padding: 4px 8px;
   cursor: pointer;
 }
+
 .spread {
   padding: 0px 4px;
 }
